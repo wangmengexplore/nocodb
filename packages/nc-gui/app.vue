@@ -127,10 +127,10 @@ const handleError = async (error, clearError) => {
     router.push('/')
   }
 
-  // reset error count after 1 second
+  // decrement error count after 5 second
   setTimeout(() => {
-    errorCount = 0
-  }, 3000)
+    errorCount--
+  }, 5000)
 }
 </script>
 
