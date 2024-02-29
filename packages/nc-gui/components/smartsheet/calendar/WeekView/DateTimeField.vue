@@ -444,12 +444,13 @@ const onResize = (event: MouseEvent) => {
 
   const day = Math.floor(percentX * 7)
   const hour = Math.floor(percentY * 23)
+  const minutes = Math.round((percentY * 24 * 60) % 60)
 
   let updateProperty: string[] = []
   let newRow: Row = resizeRecord.value
 
   if (resizeDirection.value === 'right') {
-    let newEndDate = dayjs(selectedDateRange.value.start).add(day, 'day').add(hour, 'hour')
+    let newEndDate = dayjs(selectedDateRange.value.start).add(day, 'day').add(hour, 'hour').add(minutes, 'minute')
     updateProperty = [toCol.title!]
 
     // If the new end date is before the start date, we set the new end date to the start date
@@ -467,7 +468,7 @@ const onResize = (event: MouseEvent) => {
       },
     }
   } else if (resizeDirection.value === 'left') {
-    let newStartDate = dayjs(selectedDateRange.value.start).add(day, 'day').add(hour, 'hour')
+    let newStartDate = dayjs(selectedDateRange.value.start).add(day, 'day').add(hour, 'hour').add(minutes, 'minute')
     updateProperty = [fromCol.title!]
 
     // If the new start date is after the end date, we set the new start date to the end date
